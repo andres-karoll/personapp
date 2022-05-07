@@ -1,0 +1,12 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>co.edu.javeriana.as</groupId>
+    <artifactId>personapp</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>co.edu.javeriana.as.personapp</groupId>
+  <artifactId>api</artifactId>
+  <name>api</name>
+  <description>Adaptador de entrada api rest de la aplicacion personapp</description>
+</project>
