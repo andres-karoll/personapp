@@ -17,12 +17,12 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>core</module>
+		<module>rest</module>
 		<module>mysql</module>
 		<module>mongo</module>
 		<module>api</module>
 		<module>app</module>
-		<module>terminal</module>
-		<module>rest</module>
+		<module>terminal</module>		
 	</modules>
 	<properties>
 		<java.version>11</java.version>
