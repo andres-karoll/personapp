@@ -1,5 +1,5 @@
 package co.edu.javeriana.as.personapp.core.domain;
 
-public class Domain {
+public class Telefono {
 
 }
