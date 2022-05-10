@@ -62,8 +62,6 @@ public class Estudio {
     }
 
     //Hash code and equals
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

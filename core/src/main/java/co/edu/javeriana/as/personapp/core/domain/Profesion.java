@@ -2,6 +2,7 @@ package co.edu.javeriana.as.personapp.core.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Profesion {
     //Attributes
@@ -64,5 +65,21 @@ public class Profesion {
 
     public void setTelefonos(List<Telefono> telefonos) {
         this.telefonos = telefonos;
+    }
+
+    //Hash code and equals
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profesion profesion = (Profesion) o;
+        return Objects.equals(id, profesion.id) && Objects.equals(nom, profesion.nom) && Objects.equals(des, profesion.des) && Objects.equals(telefonos, profesion.telefonos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, des, telefonos);
     }
 }
