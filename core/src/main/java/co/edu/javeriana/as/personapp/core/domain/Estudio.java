@@ -80,7 +80,6 @@ public class Estudio {
 
 
     //To String
-
     @Override
     public String toString() {
         return "Estudio{" +
