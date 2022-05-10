@@ -68,7 +68,6 @@ public class Profesion {
     }
 
     //Hash code and equals
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,5 +80,17 @@ public class Profesion {
     @Override
     public int hashCode() {
         return Objects.hash(id, nom, des, telefonos);
+    }
+
+    //To String
+
+    @Override
+    public String toString() {
+        return "Profesion{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", des='" + des + '\'' +
+                ", telefonos=" + telefonos +
+                '}';
     }
 }
