@@ -77,4 +77,17 @@ public class Estudio {
     public int hashCode() {
         return Objects.hash(id, ccPer, fecha, univer);
     }
+
+
+    //To String
+
+    @Override
+    public String toString() {
+        return "Estudio{" +
+                "id=" + id +
+                ", ccPer=" + ccPer +
+                ", fecha=" + fecha +
+                ", univer='" + univer + '\'' +
+                '}';
+    }
 }
