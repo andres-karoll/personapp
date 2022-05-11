@@ -11,4 +11,12 @@ public class Profesion {
     private String des;
     private List<Estudio> estudios;
 
+    //Constructors
+
+    //Getters and Setters
+
+    //Hash and equals
+
+    //To String
+
 }

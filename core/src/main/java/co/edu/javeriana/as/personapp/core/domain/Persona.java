@@ -13,6 +13,15 @@ public class Persona {
 	private Integer edad;
 	private List<Telefono> telefonos;
 	private List<Estudio> estudios;
+
+
+	//Constructors
+
+	//Getters and Setters
+
+	//Hash and equals
+
+	//To String
 	
 	
 

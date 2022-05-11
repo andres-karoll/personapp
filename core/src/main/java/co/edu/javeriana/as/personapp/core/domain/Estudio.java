@@ -15,4 +15,11 @@ public class Estudio {
     private Persona persona;
 
 
+    //Constructors
+
+    //Getters and Setters
+
+    //Hash and equals
+
+    //To String
 }
