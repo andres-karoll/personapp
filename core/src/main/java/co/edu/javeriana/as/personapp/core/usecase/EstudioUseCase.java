@@ -1,7 +1,6 @@
 package co.edu.javeriana.as.personapp.core.usecase;
 
 import co.edu.javeriana.as.personapp.core.domain.Estudio;
-import co.edu.javeriana.as.personapp.core.domain.Persona;
 
 import java.util.List;
 
