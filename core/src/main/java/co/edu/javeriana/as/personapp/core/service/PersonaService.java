@@ -2,6 +2,7 @@ package co.edu.javeriana.as.personapp.core.service;
 
 import java.util.List;
 
+import co.edu.javeriana.as.personapp.core.port.out.rest.PersonaRestPort;
 import co.edu.javeriana.as.personapp.core.usecase.PersonaUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class PersonaService implements PersonaUseCase {
 	
 	@Autowired
 	private PersonaMySQLPort personaMySQLPort;
+
+	@Autowired
+	private PersonaRestPort personaRestPort;
 
 	@Override
 	public Persona buscarPorId(Integer cc) {
