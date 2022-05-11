@@ -12,7 +12,7 @@ public interface ProfesionPort {
 
     public List<Profesion> findAll();
 
-    public Profesion findByCC(Integer id);
+    public Profesion findById(Integer id);
 
     public Integer count();
 }

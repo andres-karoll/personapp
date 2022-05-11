@@ -12,7 +12,7 @@ public interface EstudioPort {
 
     public List<Estudio> findAll();
 
-    public Estudio findByCC(Integer idProfesion,Integer ccPersona);
+    public Estudio findByIdProfCcPer(Integer idProfesion,Integer ccPersona);
 
     public Integer count();
 
