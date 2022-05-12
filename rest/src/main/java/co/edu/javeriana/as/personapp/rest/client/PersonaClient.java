@@ -32,13 +32,23 @@ public class PersonaClient {
     }
 
     //Create persona
-    public void create(Persona persona) {
-        restTemplate.postForObject(CREATE_PERSONA, persona, Persona.class);
+    public JSONObject create(Persona persona) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity entity = new HttpEntity("parameters", headers);
+        ResponseEntity<String> personita = restTemplate.exchange(CREATE_PERSONA, HttpMethod.POST, entity, String.class, persona);
+        JSONObject person = new JSONObject(personita);
+        return person;
     }
 
     //Edit persona
-    public JSONObject edit() {
-        return null;
+    public JSONObject edit(Persona persona) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity entity = new HttpEntity("parameters", headers);
+        ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class, persona);
+        JSONObject person = new JSONObject(personita);
+        return person;
     }
 
     //Find by ID persona
@@ -57,7 +67,12 @@ public class PersonaClient {
     }
 
     //Count persona
-    public void count() {
-
+    public JSONObject count() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity entity = new HttpEntity("parameters", headers);
+        ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class);
+        JSONObject number = new JSONObject(personita);
+        return number;
     }
 }
