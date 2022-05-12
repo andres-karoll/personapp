@@ -1,5 +1,6 @@
 package co.edu.javeriana.as.personapp.rest.mapper;
 
+import co.edu.javeriana.as.personapp.core.domain.Genero;
 import co.edu.javeriana.as.personapp.core.domain.Persona;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,22 +14,29 @@ public class PersonaMapper {
         List<Persona> personas = new ArrayList<>();
         if(jsonPersona != null){
             for (int i=0; i<jsonPersona.length(); i++){
-                Persona persona = new Persona();
-                persona.setNombre(jsonPersona.getJSONObject(i).getString("nombre"));
-                persona.setApellido(jsonPersona.getJSONObject(i).getString("apellido"));
-                personas.add(persona);
+                personas.add(deJSONObjectAPersona(jsonPersona.getJSONObject(i)));
             }
         }
-        return null;
+        return personas;
     }
 
     public Persona deJSONObjectAPersona(JSONObject jsonPersona){
-        Persona person = new Persona();
+        Persona person = new Persona(jsonPersona.getInt("cc"), jsonPersona.getString("nombre"), jsonPersona.getString("apellido"), jsonPersona.getEnum(Genero.class, "genero"), jsonPersona.getInt("edad"));
         return person;
     }
 
-    public Integer deJSONObjectANumber(JSONObject jsonNumber){
-        Integer number = 0;
-        return number;
+    public JSONObject dePersonaAJSONObject(Persona persona){
+
+        JSONObject objeto = new JSONObject();
+        objeto.put("cc", persona.getCc());
+        objeto.put("nombre", persona.getNombre());
+        objeto.put("apellido", persona.getApellido());
+        objeto.put("genero", persona.getGenero());
+        objeto.put("edad", persona.getEdad());
+        objeto.put("telefonos", persona.getTelefonos());
+        objeto.put("estudios", persona.getEstudios());
+
+        return objeto;
     }
+
 }

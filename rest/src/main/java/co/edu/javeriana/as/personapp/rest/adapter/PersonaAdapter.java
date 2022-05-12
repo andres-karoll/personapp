@@ -2,6 +2,7 @@ package co.edu.javeriana.as.personapp.rest.adapter;
 import co.edu.javeriana.as.personapp.core.port.out.rest.PersonaRestPort;
 import co.edu.javeriana.as.personapp.rest.client.PersonaClient;
 import co.edu.javeriana.as.personapp.rest.mapper.PersonaMapper;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import co.edu.javeriana.as.personapp.core.domain.Persona;
@@ -18,8 +19,9 @@ public class PersonaAdapter implements PersonaRestPort {
 
     @Override
     public Persona save(Persona persona) {
-        return null;
-                //personaMapper.deJSONObjectAPersona(personaClient.create(persona));
+        //De persona a JSONObject - Llamado a cliente - de JSONObject a persona
+        JSONObject object = personaMapper.dePersonaAJSONObject(persona);
+        return personaMapper.deJSONObjectAPersona(personaClient.create(object));
     }
 
     @Override
@@ -39,6 +41,6 @@ public class PersonaAdapter implements PersonaRestPort {
 
     @Override
     public Integer count() {
-        return personaMapper.deJSONObjectANumber(personaClient.count());
+        return null;
     }
 }
