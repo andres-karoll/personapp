@@ -1,13 +1,13 @@
 package co.edu.javeriana.as.personapp.api.model.request;
 
 
-public class CrearPersonaRequest {
+public class PersonaRequest {
 	private String dni;
 	private String firstName;
 	private String lastName;
 	private String age;
 	private String sex;
-	public CrearPersonaRequest(String dni, String firstName, String lastName, String age, String sex) {
+	public PersonaRequest(String dni, String firstName, String lastName, String age, String sex) {
 		super();
 		this.dni = dni;
 		this.firstName = firstName;
@@ -15,6 +15,7 @@ public class CrearPersonaRequest {
 		this.age = age;
 		this.sex = sex;
 	}
+	public PersonaRequest() {}
 	public String getDni() {
 		return dni;
 	}
