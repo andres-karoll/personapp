@@ -32,12 +32,15 @@ public class PersonaClient {
     }
 
     //Create persona
-    public JSONObject create(Persona persona) {
+    public JSONObject create(JSONObject body) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity entity = new HttpEntity("parameters", headers);
-        ResponseEntity<String> personita = restTemplate.exchange(CREATE_PERSONA, HttpMethod.POST, entity, String.class, persona);
-        JSONObject person = new JSONObject(personita);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Map<String,Object>> entity = new HttpEntity<Map<String,Object>>(body.toMap(),headers);
+        ResponseEntity<String> response = restTemplate.postForEntity(CREATE_PERSONA,entity,String.class);
+        System.out.println("jjj"+response.toString());
+
+        JSONObject person = new JSONObject(response.getBody());
+        System.out.println(person);
         return person;
     }
 

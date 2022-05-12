@@ -18,7 +18,8 @@ public class PersonaAdapter implements PersonaRestPort {
 
     @Override
     public Persona save(Persona persona) {
-        return personaMapper.deJSONObjectAPersona(personaClient.create(persona));
+        return null;
+                //personaMapper.deJSONObjectAPersona(personaClient.create(persona));
     }
 
     @Override
