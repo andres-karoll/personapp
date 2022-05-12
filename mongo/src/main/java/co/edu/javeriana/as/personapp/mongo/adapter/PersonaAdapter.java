@@ -29,8 +29,23 @@ public class PersonaAdapter implements PersonaMongoDBPort {
 	}
 
 	@Override
-	public List<Persona> findByCC(Integer cc) {
+	public Persona findByCC(Integer cc) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Persona update(Persona persona) {
+		return null;
+	}
+
+	@Override
+	public Boolean delete(Persona persona) {
+		return null;
+	}
+
+	@Override
+	public Integer count(Persona persona) {
 		return null;
 	}
 
