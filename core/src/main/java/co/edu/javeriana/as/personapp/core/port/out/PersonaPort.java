@@ -12,7 +12,7 @@ public interface PersonaPort {
 	
 	public List<Persona> findAll();
 	
-	public List<Persona> findByCC(Integer cc);
+	public Persona findByCC(Integer cc);
 	
 	public Integer count();
 
