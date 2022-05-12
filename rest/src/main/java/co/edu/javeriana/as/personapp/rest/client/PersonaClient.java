@@ -4,11 +4,11 @@ import co.edu.javeriana.as.personapp.core.domain.Persona;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PersonaClient {
 
@@ -18,7 +18,7 @@ public class PersonaClient {
     private static final String FIND_BY_ID_PERSONA = "http://localhost:3000/personas/find/{id}";
     private static final String DELETE_PERSONA = "http://localhost:3000/personas/deletePersonas/{id}";
 
-    RestTemplate restTemplate = new RestTemplate();
+
 
     //Lo pido desde santiago
     //Get All personas
@@ -26,16 +26,23 @@ public class PersonaClient {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity entity = new HttpEntity("parameters", headers);
-        ResponseEntity<String> allPersonas = restTemplate.exchange(GET_ALL_PERSONAS, HttpMethod.GET, entity, String.class);
-        JSONArray list = new JSONArray(allPersonas);
+        //ResponseEntity<String> allPersonas = restTemplate.exchange(GET_ALL_PERSONAS, HttpMethod.GET, entity, String.class);
+        JSONArray list = new JSONArray(/*allPersonas*/);
         return list;
     }
 
     //Create persona
+    @ResponseBody
     public JSONObject create(JSONObject body) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        System.out.println(body.toMap());
         HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.ALL));
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Map<String,Object>> entity = new HttpEntity<Map<String,Object>>(body.toMap(),headers);
+        System.out.println(headers.toString());
+        HttpEntity<Map<String,Object>> entity = new HttpEntity<>(body.toMap(),headers);
+        System.out.println(entity);
         ResponseEntity<String> response = restTemplate.postForEntity(CREATE_PERSONA,entity,String.class);
         System.out.println("jjj"+response.toString());
 
@@ -49,8 +56,8 @@ public class PersonaClient {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity entity = new HttpEntity("parameters", headers);
-        ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class, persona);
-        JSONObject person = new JSONObject(personita);
+        //ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class, persona);
+        JSONObject person = new JSONObject(/*personita*/);
         return person;
     }
 
@@ -58,15 +65,15 @@ public class PersonaClient {
     public JSONObject byID(Integer cc) {
         Map<String, Integer> param = new HashMap<>();
         param.put("cc", cc);
-        JSONObject personita = restTemplate.getForObject(FIND_BY_ID_PERSONA, JSONObject.class, param);
-        return personita;
+        //JSONObject personita = restTemplate.getForObject(FIND_BY_ID_PERSONA, JSONObject.class, param);
+        return null;
     }
 
     //Delete persona
     public void delete(Integer cc) {
         Map<String, Integer> param = new HashMap<>();
         param.put("cc", cc);
-        restTemplate.delete(DELETE_PERSONA, param);
+        //restTemplate.delete(DELETE_PERSONA, param);
     }
 
     //Count persona
@@ -74,8 +81,8 @@ public class PersonaClient {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity entity = new HttpEntity("parameters", headers);
-        ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class);
-        JSONObject number = new JSONObject(personita);
+       // ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class);
+        JSONObject number = new JSONObject(/*personita*/);
         return number;
     }
 }

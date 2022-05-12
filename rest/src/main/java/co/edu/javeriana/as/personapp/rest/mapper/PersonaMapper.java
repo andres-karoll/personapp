@@ -4,11 +4,12 @@ import co.edu.javeriana.as.personapp.core.domain.Genero;
 import co.edu.javeriana.as.personapp.core.domain.Persona;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@Component
 public class PersonaMapper {
     public List<Persona> deJSONArrayAListPersona(JSONArray jsonPersona){
         List<Persona> personas = new ArrayList<>();
@@ -33,8 +34,8 @@ public class PersonaMapper {
         objeto.put("apellido", persona.getApellido());
         objeto.put("genero", persona.getGenero());
         objeto.put("edad", persona.getEdad());
-        objeto.put("telefonos", persona.getTelefonos());
-        objeto.put("estudios", persona.getEstudios());
+        //objeto.put("telefonos", persona.getTelefonos());
+        //objeto.put("estudios", persona.getEstudios());
 
         return objeto;
     }
