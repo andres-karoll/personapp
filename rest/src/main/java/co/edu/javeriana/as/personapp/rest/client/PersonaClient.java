@@ -73,7 +73,7 @@ public class PersonaClient {
     }
 
     //Find by ID persona
-    public JSONObject byID(JSONObject cc) {
+    public JSONObject byID(Integer cc) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.ALL));
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -81,11 +81,9 @@ public class PersonaClient {
         HttpEntity entity = new HttpEntity(headers);
         RestTemplate restTemplate = new RestTemplate();
         JSONObject person = null;
-        Map<String, JSONObject> param = new HashMap<>();
-        param.put("cc", cc);
 
         try {
-            ResponseEntity<String> response = restTemplate.exchange(FIND_BY_ID_PERSONA, HttpMethod.GET, entity, String.class, param);
+            ResponseEntity<String> response = restTemplate.exchange(FIND_BY_ID_PERSONA, HttpMethod.GET, entity, String.class, cc);
             person = new JSONObject(response.getBody());
         }catch(ResourceAccessException r){
             System.out.println("Servicio no disponible");
@@ -96,14 +94,26 @@ public class PersonaClient {
     }
 
     //Delete persona
-    public void delete(Integer cc) {
-        Map<String, Integer> param = new HashMap<>();
-        param.put("cc", cc);
-        //restTemplate.delete(DELETE_PERSONA, param);
+    public Boolean delete(Integer cc) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.ALL));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity entity = new HttpEntity(headers);
+        RestTemplate restTemplate = new RestTemplate();
+        Boolean accepted = null;
+
+        try {
+            ResponseEntity<Boolean> response = restTemplate.exchange(DELETE_PERSONA, HttpMethod.DELETE, entity, Boolean.class, cc);
+            accepted = response.getBody();
+        }catch(ResourceAccessException r){
+            System.out.println("Servicio no disponible");
+        }
+        return accepted;
     }
 
     //Count persona
-    public JSONObject count() {
+    public Integer count() {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
@@ -111,8 +121,7 @@ public class PersonaClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity entity = new HttpEntity(headers);
-        ResponseEntity<String> response = restTemplate.exchange(COUNT_PERSONAS, HttpMethod.GET, entity, String.class);
-        JSONObject number = new JSONObject(response.getBody());
-        return number;
+        ResponseEntity<Integer> response = restTemplate.exchange(COUNT_PERSONAS, HttpMethod.GET, entity, Integer.class);
+        return response.getBody();
     }
 }

@@ -28,7 +28,7 @@ public class PersonaAdapter implements PersonaRestPort {
 
     @Override
     public Boolean delete(Integer cc) {
-        return null;
+        return personaClient.delete(cc);
     }
 
     @Override
@@ -38,8 +38,7 @@ public class PersonaAdapter implements PersonaRestPort {
 
     @Override
     public Persona findByCC(Integer cc) {
-        JSONObject cedula = new JSONObject(cc);
-        return personaMapper.deJSONObjectAPersona(personaClient.byID(cedula));
+        return personaMapper.deJSONObjectAPersona(personaClient.byID(cc));
     }
 
     @Override

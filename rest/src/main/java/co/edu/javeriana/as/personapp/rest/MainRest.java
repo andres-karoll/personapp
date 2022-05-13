@@ -16,15 +16,15 @@ public class MainRest {
         //JSONObject ob = personaclient.create(obj);
         //Persona per = personaMapper.deJSONObjectAPersona(ob);
         //System.out.println(per);
-        JSONObject cc = new JSONObject(123);
-        JSONObject cd = new JSONObject(1);
-        System.out.println("Get all");
-        System.out.println(personaMapper.deJSONArrayAListPersona(personaclient.get()));
+        //System.out.println("Get all");
+        //System.out.println(personaMapper.deJSONArrayAListPersona(personaclient.get()));
         System.out.println("Get id");
-        System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(cc)));
-        System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(cd)));
+        System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(123)));
+        System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(1)));
         System.out.println("Count");
         System.out.println(personaclient.count());
+        System.out.println("Delete");
+        System.out.println(personaclient.delete(66));
     }
 
 }
