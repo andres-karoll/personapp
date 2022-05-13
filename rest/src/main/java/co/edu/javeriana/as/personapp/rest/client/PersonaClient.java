@@ -1,12 +1,8 @@
 package co.edu.javeriana.as.personapp.rest.client;
 
-import co.edu.javeriana.as.personapp.core.domain.Persona;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONString;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,15 +15,25 @@ public class PersonaClient {
     private static final String EDIT_PERSONA = "http://localhost:3000/personas/editPersonas";
     private static final String FIND_BY_ID_PERSONA = "http://localhost:3000/personas/find/{id}";
     private static final String DELETE_PERSONA = "http://localhost:3000/personas/deletePersonas/{id}";
-    
+    private static final String COUNT_PERSONAS = "http://localhost:3000/personas/count";
+
     //Get All personas
     public JSONArray get() {
+        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity entity = new HttpEntity("parameters", headers);
-        //ResponseEntity<String> allPersonas = restTemplate.exchange(GET_ALL_PERSONAS, HttpMethod.GET, entity, String.class);
-        JSONArray list = new JSONArray(/*allPersonas*/);
-        return list;
+        JSONArray people = null;
+
+        headers.setAccept(Collections.singletonList(MediaType.ALL));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity entity = new HttpEntity(headers);
+
+        try {
+            ResponseEntity<String> allPersonas = restTemplate.exchange(GET_ALL_PERSONAS, HttpMethod.GET, entity, String.class);
+            people = new JSONArray(allPersonas.getBody());
+        }catch (ResourceAccessException r){
+            System.out.println("Servicio no disponible");
+        }
+        return people;
     }
 
     //Create persona
@@ -49,21 +55,44 @@ public class PersonaClient {
     }
 
     //Edit persona
-    public JSONObject edit(Persona persona) {
+    public JSONObject edit(JSONObject body) {
+        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity entity = new HttpEntity("parameters", headers);
-        //ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class, persona);
-        JSONObject person = new JSONObject(/*personita*/);
+        JSONObject person = null;
+
+        headers.setAccept(Collections.singletonList(MediaType.ALL));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Object> entity = new HttpEntity<>(body.toString(),headers);
+        try{
+            ResponseEntity<String> response = restTemplate.postForEntity(EDIT_PERSONA,entity, String.class);
+            person = new JSONObject(response.getBody());
+        }catch(ResourceAccessException r){
+            System.out.println("Servicio no disponible");
+        }
         return person;
     }
 
     //Find by ID persona
-    public JSONObject byID(Integer cc) {
-        Map<String, Integer> param = new HashMap<>();
+    public JSONObject byID(JSONObject cc) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.ALL));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity entity = new HttpEntity(headers);
+        RestTemplate restTemplate = new RestTemplate();
+        JSONObject person = null;
+        Map<String, JSONObject> param = new HashMap<>();
         param.put("cc", cc);
-        //JSONObject personita = restTemplate.getForObject(FIND_BY_ID_PERSONA, JSONObject.class, param);
-        return null;
+
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(FIND_BY_ID_PERSONA, HttpMethod.GET, entity, String.class, param);
+            person = new JSONObject(response.getBody());
+        }catch(ResourceAccessException r){
+            System.out.println("Servicio no disponible");
+        }catch(RuntimeException e){
+            System.out.println("Persona no encontrada");
+        }
+        return person;
     }
 
     //Delete persona
@@ -75,11 +104,15 @@ public class PersonaClient {
 
     //Count persona
     public JSONObject count() {
+        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity entity = new HttpEntity("parameters", headers);
-       // ResponseEntity<String> personita = restTemplate.exchange(EDIT_PERSONA, HttpMethod.PUT, entity, String.class);
-        JSONObject number = new JSONObject(/*personita*/);
+
+        headers.setAccept(Collections.singletonList(MediaType.ALL));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity entity = new HttpEntity(headers);
+        ResponseEntity<String> response = restTemplate.exchange(COUNT_PERSONAS, HttpMethod.GET, entity, String.class);
+        JSONObject number = new JSONObject(response.getBody());
         return number;
     }
 }

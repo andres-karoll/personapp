@@ -20,8 +20,10 @@ public class PersonaAdapter implements PersonaRestPort {
     @Override
     public Persona save(Persona persona) {
         //De persona a JSONObject - Llamado a cliente - de JSONObject a persona
-        JSONObject object = personaMapper.dePersonaAJSONObject(persona);
-        return personaMapper.deJSONObjectAPersona(personaClient.create(object));
+        JSONObject obj = personaMapper.dePersonaAJSONObject(persona);
+        JSONObject ob = personaClient.create(obj);
+        Persona per = personaMapper.deJSONObjectAPersona(ob);
+        return per;
     }
 
     @Override
@@ -36,7 +38,8 @@ public class PersonaAdapter implements PersonaRestPort {
 
     @Override
     public Persona findByCC(Integer cc) {
-        return personaMapper.deJSONObjectAPersona(personaClient.byID(cc));
+        JSONObject cedula = new JSONObject(cc);
+        return personaMapper.deJSONObjectAPersona(personaClient.byID(cedula));
     }
 
     @Override
