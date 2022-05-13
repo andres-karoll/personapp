@@ -9,7 +9,6 @@ import co.edu.javeriana.as.personapp.core.domain.Persona;
 
 import java.util.List;
 
-//en core debe haber un paquete que se llame reste ese se consume
 @Component
 public class PersonaAdapter implements PersonaRestPort {
     @Autowired
@@ -43,6 +42,6 @@ public class PersonaAdapter implements PersonaRestPort {
 
     @Override
     public Integer count() {
-        return null;
+        return personaClient.count();
     }
 }

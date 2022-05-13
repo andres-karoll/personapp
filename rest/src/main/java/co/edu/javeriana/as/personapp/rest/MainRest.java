@@ -18,13 +18,13 @@ public class MainRest {
         //System.out.println(per);
         //System.out.println("Get all");
         //System.out.println(personaMapper.deJSONArrayAListPersona(personaclient.get()));
-        System.out.println("Get id");
-        System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(123)));
-        System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(1)));
+        //System.out.println("Get id");
+        //System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(123)));
+        //System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(1)));
         System.out.println("Count");
         System.out.println(personaclient.count());
-        System.out.println("Delete");
-        System.out.println(personaclient.delete(66));
+        //System.out.println("Delete");
+        //System.out.println(personaclient.delete(66));
     }
 
 }

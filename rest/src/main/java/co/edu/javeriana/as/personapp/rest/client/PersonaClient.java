@@ -116,12 +116,19 @@ public class PersonaClient {
     public Integer count() {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
+        Integer number = null;
 
         headers.setAccept(Collections.singletonList(MediaType.ALL));
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity entity = new HttpEntity(headers);
-        ResponseEntity<Integer> response = restTemplate.exchange(COUNT_PERSONAS, HttpMethod.GET, entity, Integer.class);
-        return response.getBody();
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(COUNT_PERSONAS, HttpMethod.GET, entity, String.class);
+            number = Integer. parseInt(response.getBody());
+        }catch(ResourceAccessException r){
+            System.out.println("Servicio no disponible");
+        }
+
+        return number;
     }
 }
