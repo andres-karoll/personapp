@@ -11,6 +11,15 @@
 	<name>mongo</name>
 	<description>Adaptador de salida de persistencia en mongo de la aplicacion personapp</description>
 	<dependencies>
+	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+    <groupId>org.modelmapper</groupId>
+    <artifactId>modelmapper</artifactId>
+    <version>2.4.4</version>
+</dependency>
 		<dependency>
 			<groupId>co.edu.javeriana.as.personapp</groupId>
 			<artifactId>core</artifactId>
