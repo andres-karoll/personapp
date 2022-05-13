@@ -22,8 +22,11 @@ public class PersonaMapper {
     }
 
     public Persona deJSONObjectAPersona(JSONObject jsonPersona){
-        Persona person = new Persona(jsonPersona.getInt("cc"), jsonPersona.getString("nombre"), jsonPersona.getString("apellido"), jsonPersona.getEnum(Genero.class, "genero"), jsonPersona.getInt("edad"));
-        return person;
+        if(jsonPersona != null) {
+            Persona person = new Persona(jsonPersona.getInt("cc"), jsonPersona.getString("nombre"), jsonPersona.getString("apellido"), jsonPersona.getEnum(Genero.class, "genero"), jsonPersona.getInt("edad"));
+            return person;
+        }
+        return null;
     }
 
     public JSONObject dePersonaAJSONObject(Persona persona){

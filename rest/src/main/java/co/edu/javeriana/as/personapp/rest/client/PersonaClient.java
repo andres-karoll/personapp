@@ -3,9 +3,11 @@ package co.edu.javeriana.as.personapp.rest.client;
 import co.edu.javeriana.as.personapp.core.domain.Persona;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONString;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -17,10 +19,7 @@ public class PersonaClient {
     private static final String EDIT_PERSONA = "http://localhost:3000/personas/editPersonas";
     private static final String FIND_BY_ID_PERSONA = "http://localhost:3000/personas/find/{id}";
     private static final String DELETE_PERSONA = "http://localhost:3000/personas/deletePersonas/{id}";
-
-
-
-    //Lo pido desde santiago
+    
     //Get All personas
     public JSONArray get() {
         HttpHeaders headers = new HttpHeaders();
@@ -32,22 +31,20 @@ public class PersonaClient {
     }
 
     //Create persona
-    @ResponseBody
     public JSONObject create(JSONObject body) {
         RestTemplate restTemplate = new RestTemplate();
-
-        System.out.println(body.toMap());
         HttpHeaders headers = new HttpHeaders();
+        JSONObject person = null;
+
         headers.setAccept(Collections.singletonList(MediaType.ALL));
         headers.setContentType(MediaType.APPLICATION_JSON);
-        System.out.println(headers.toString());
-        HttpEntity<Map<String,Object>> entity = new HttpEntity<>(body.toMap(),headers);
-        System.out.println(entity);
-        ResponseEntity<String> response = restTemplate.postForEntity(CREATE_PERSONA,entity,String.class);
-        System.out.println("jjj"+response.toString());
-
-        JSONObject person = new JSONObject(response.getBody());
-        System.out.println(person);
+        HttpEntity<Object> entity = new HttpEntity<>(body.toString(),headers);
+        try{
+            ResponseEntity<String> response = restTemplate.postForEntity(CREATE_PERSONA,entity, String.class);
+            person = new JSONObject(response.getBody());
+        }catch(ResourceAccessException r){
+            System.out.println("Servicio no disponible");
+        }
         return person;
     }
 
