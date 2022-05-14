@@ -11,13 +11,13 @@ public class ProfesionRestMapper {
     EstudioRestMapper estudioRestMapper;
 
     public List<Profesion> deJSONArrayAListProfesiones(JSONArray jsonProfesion){
-        List<Profesion> personas = new ArrayList<>();
+        List<Profesion> profesiones = new ArrayList<>();
         if(jsonProfesion != null){
             for (int i=0; i<jsonProfesion.length(); i++){
-                personas.add(deJSONObjectAProfesion(jsonProfesion.getJSONObject(i)));
+                profesiones.add(deJSONObjectAProfesion(jsonProfesion.getJSONObject(i)));
             }
         }
-        return personas;
+        return profesiones;
     }
 
     public Profesion deJSONObjectAProfesion(JSONObject jsonProfesion){

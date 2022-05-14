@@ -14,13 +14,13 @@ public class EstudioRestMapper {
     private PersonaRestMapper personaRestMapper;
 
     public List<Estudio> deJSONArrayAListEstudio(JSONArray jsonEstudio){
-        List<Estudio> personas = new ArrayList<>();
+        List<Estudio> estudios = new ArrayList<>();
         if(jsonEstudio != null){
             for (int i=0; i<jsonEstudio.length(); i++){
-                personas.add(deJSONObjectAEstudio(jsonEstudio.getJSONObject(i)));
+                estudios.add(deJSONObjectAEstudio(jsonEstudio.getJSONObject(i)));
             }
         }
-        return personas;
+        return estudios;
     }
 
     public Estudio deJSONObjectAEstudio(JSONObject jsonEstudio){

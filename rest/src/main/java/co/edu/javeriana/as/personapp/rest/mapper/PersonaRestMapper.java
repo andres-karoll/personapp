@@ -11,6 +11,7 @@ import java.util.List;
 @Component
 public class PersonaRestMapper {
     EstudioRestMapper estudioRestMapper;
+    TelefonoRestMapper telefonoRestMapper;
 
     public List<Persona> deJSONArrayAListPersona(JSONArray jsonPersona){
         List<Persona> personas = new ArrayList<>();
@@ -26,6 +27,7 @@ public class PersonaRestMapper {
         if(jsonPersona != null) {
             Persona person = new Persona(jsonPersona.getInt("cc"), jsonPersona.getString("nombre"), jsonPersona.getString("apellido"), jsonPersona.getEnum(Genero.class, "genero"), jsonPersona.getInt("edad"));
             person.setEstudios(estudioRestMapper.deJSONArrayAListEstudio(jsonPersona.getJSONArray("estudios")));
+            person.setTelefonos(telefonoRestMapper.deJSONArrayAListTelefono(jsonPersona.getJSONArray("telefonos")));
             return person;
         }
         return null;
