@@ -6,8 +6,8 @@ public class EstudioApiResponse extends EstudioApiRequest {
 
     private String status;
 
-    public EstudioApiResponse(Integer idProfesion, Integer ccPersona, String fecha, String universidad, String profesion, String status) {
-        super(idProfesion, ccPersona, fecha, universidad, profesion);
+    public EstudioApiResponse(Integer idProfesion, Integer ccPersona, String fecha, String universidad, String status) {
+        super(idProfesion, ccPersona, fecha, universidad);
         this.status = status;
     }
 

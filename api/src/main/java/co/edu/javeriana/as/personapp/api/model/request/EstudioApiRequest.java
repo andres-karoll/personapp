@@ -8,7 +8,7 @@ public class EstudioApiRequest {
 
     public EstudioApiRequest() {
     }
-    public EstudioApiRequest(Integer idProfesion, Integer ccPersona, String fecha, String universidad, String profesion) {
+    public EstudioApiRequest(Integer idProfesion, Integer ccPersona, String fecha, String universidad) {
         this.idProfesion = idProfesion;
         this.ccPersona = ccPersona;
         this.fecha = fecha;

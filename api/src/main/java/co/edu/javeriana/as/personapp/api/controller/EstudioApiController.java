@@ -44,8 +44,8 @@ public class EstudioApiController {
     }
 
     @GetMapping(value = "crear", produces = { "application/json" })
-    public EstudioApiResponse crear(@RequestParam("idProfesion") int idP, @RequestParam("ccPersona") int ccP, @RequestParam("fecha") String fecha, @RequestParam("universidad") String universidad, @RequestParam("profesion") String profesion){
-        EstudioApiRequest request = new EstudioApiRequest(idP, ccP, fecha, universidad, profesion);
+    public EstudioApiResponse crear(@RequestParam("idProfesion") int idP, @RequestParam("ccPersona") int ccP, @RequestParam("fecha") String fecha, @RequestParam("universidad") String universidad){
+        EstudioApiRequest request = new EstudioApiRequest(idP, ccP, fecha, universidad);
         EstudioApiResponse response = estudioApiMapper.deEstudioAEstudioResponse(estudioApiAdapter.crear(estudioApiMapper.deEstudioRequestAEstudio(request)));
         return response;
     }
