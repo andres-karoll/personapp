@@ -1,7 +1,5 @@
 package co.edu.javeriana.as.personapp.rest.mapper;
 
-import co.edu.javeriana.as.personapp.core.domain.Genero;
-import co.edu.javeriana.as.personapp.core.domain.Persona;
 import co.edu.javeriana.as.personapp.core.domain.Telefono;
 import org.json.JSONArray;
 import org.json.JSONObject;
