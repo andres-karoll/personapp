@@ -4,7 +4,7 @@ import co.edu.javeriana.as.personapp.core.domain.Telefono;
 
 import java.util.List;
 
-public interface TelefonoPort {
+public interface TelefonoApiPort {
     public Telefono buscarPorId(Integer num);
 
     public List<Telefono> buscarTodo();

@@ -1,13 +1,13 @@
 package co.edu.javeriana.as.personapp.api.adapter;
 
-import co.edu.javeriana.as.personapp.api.port.in.EstudioPort;
+import co.edu.javeriana.as.personapp.api.port.in.EstudioApiPort;
 import co.edu.javeriana.as.personapp.core.domain.Estudio;
 import co.edu.javeriana.as.personapp.core.usecase.EstudioUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class EstudioAdapter implements EstudioPort {
+public class EstudioApiAdapter implements EstudioApiPort {
     @Autowired
     private EstudioUseCase estudioUseCase;
     @Override

@@ -1,17 +1,16 @@
 package co.edu.javeriana.as.personapp.api.model.response;
 
-import co.edu.javeriana.as.personapp.api.model.request.TelefonoRequest;
-import co.edu.javeriana.as.personapp.core.domain.Telefono;
+import co.edu.javeriana.as.personapp.api.model.request.TelefonoApiRequest;
 
-public class TelefonoResponse extends TelefonoRequest {
+public class TelefonoApiResponse extends TelefonoApiRequest {
     private String status;
 
-    public TelefonoResponse(String num, String oper, int ccDuenio, String status) {
+    public TelefonoApiResponse(String num, String oper, int ccDuenio, String status) {
         super(num, oper, ccDuenio);
         this.status = status;
     }
 
-    public TelefonoResponse() {
+    public TelefonoApiResponse() {
         super();
         this.status = "";
     }

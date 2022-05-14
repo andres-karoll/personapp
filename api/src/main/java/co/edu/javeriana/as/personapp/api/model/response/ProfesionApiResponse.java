@@ -1,17 +1,17 @@
 package co.edu.javeriana.as.personapp.api.model.response;
 
-import co.edu.javeriana.as.personapp.api.model.request.ProfesionRequest;
+import co.edu.javeriana.as.personapp.api.model.request.ProfesionApiRequest;
 
-public class ProfesionResponse extends ProfesionRequest {
+public class ProfesionApiResponse extends ProfesionApiRequest {
 
     private String status;
 
-    public ProfesionResponse(Integer id, String nom, String des, String status) {
+    public ProfesionApiResponse(Integer id, String nom, String des, String status) {
         super(id, nom, des);
         this.status = status;
     }
 
-    public ProfesionResponse() {
+    public ProfesionApiResponse() {
         super();
         this.status = "";
     }

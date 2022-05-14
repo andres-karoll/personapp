@@ -1,13 +1,13 @@
 package co.edu.javeriana.as.personapp.api.adapter;
 
-import co.edu.javeriana.as.personapp.api.port.in.TelefonoPort;
+import co.edu.javeriana.as.personapp.api.port.in.TelefonoApiPort;
 import co.edu.javeriana.as.personapp.core.domain.Telefono;
 import co.edu.javeriana.as.personapp.core.usecase.TelefonoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class TelefonoAdapter implements TelefonoPort {
+public class TelefonoApiAdapter implements TelefonoApiPort {
     @Autowired
     TelefonoUseCase telefonoUseCase;
 

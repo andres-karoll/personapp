@@ -4,7 +4,7 @@ import co.edu.javeriana.as.personapp.core.domain.Estudio;
 
 import java.util.List;
 
-public interface EstudioPort {
+public interface EstudioApiPort {
     public Estudio buscarPorId(Integer idProfesion, Integer ccPersona);
 
     public List<Estudio> buscarTodo();

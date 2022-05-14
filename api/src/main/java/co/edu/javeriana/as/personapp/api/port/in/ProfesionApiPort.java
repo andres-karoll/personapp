@@ -4,7 +4,7 @@ import co.edu.javeriana.as.personapp.core.domain.Profesion;
 
 import java.util.List;
 
-public interface ProfesionPort {
+public interface ProfesionApiPort {
     public Profesion buscarPorId(Integer id);
 
     public List<Profesion> buscarTodo();

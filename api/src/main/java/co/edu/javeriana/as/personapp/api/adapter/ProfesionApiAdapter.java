@@ -1,13 +1,13 @@
 package co.edu.javeriana.as.personapp.api.adapter;
 
-import co.edu.javeriana.as.personapp.api.port.in.ProfesionPort;
+import co.edu.javeriana.as.personapp.api.port.in.ProfesionApiPort;
 import co.edu.javeriana.as.personapp.core.domain.Profesion;
 import co.edu.javeriana.as.personapp.core.usecase.ProfesionUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class ProfesionAdapter implements ProfesionPort {
+public class ProfesionApiAdapter implements ProfesionApiPort {
 
     @Autowired
     private ProfesionUseCase profesionUseCase;

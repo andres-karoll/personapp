@@ -1,23 +1,23 @@
 package co.edu.javeriana.as.personapp.api.adapter;
 
-import co.edu.javeriana.as.personapp.api.mapper.PersonaMapper;
+import co.edu.javeriana.as.personapp.api.mapper.PersonaApiMapper;
 import co.edu.javeriana.as.personapp.core.domain.Persona;
 import co.edu.javeriana.as.personapp.core.usecase.PersonaModificacionUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.edu.javeriana.as.personapp.api.model.request.PersonaRequest;
-import co.edu.javeriana.as.personapp.api.model.response.PersonaResponse;
-import co.edu.javeriana.as.personapp.api.port.in.PersonaPort;
+import co.edu.javeriana.as.personapp.api.model.request.PersonaApiRequest;
+import co.edu.javeriana.as.personapp.api.model.response.PersonaApiResponse;
+import co.edu.javeriana.as.personapp.api.port.in.PersonaApiPort;
 import co.edu.javeriana.as.personapp.core.usecase.PersonaConsultaUseCase;
 
 import java.util.List;
 
 @Component
-public class PersonaAdapter implements PersonaPort{
+public class PersonaApiAdapter implements PersonaApiPort {
 
 	@Autowired
-	private PersonaMapper personaMapper;
+	private PersonaApiMapper personaApiMapper;
 	@Autowired
 	private PersonaConsultaUseCase personaConsultaUseCase;
 	@Autowired
@@ -41,9 +41,9 @@ public class PersonaAdapter implements PersonaPort{
 	}
 
 	@Override
-	public PersonaResponse crearPersona(PersonaRequest request) {
-		Persona newPersona = personaModificacionUseCase.crear(personaMapper.dePersonaRequestAPersona(request));
-		return personaMapper.dePersonaAPersonaResponse(newPersona);
+	public PersonaApiResponse crearPersona(PersonaApiRequest request) {
+		Persona newPersona = personaModificacionUseCase.crear(personaApiMapper.dePersonaRequestAPersona(request));
+		return personaApiMapper.dePersonaAPersonaResponse(newPersona);
 	}
 
 	@Override

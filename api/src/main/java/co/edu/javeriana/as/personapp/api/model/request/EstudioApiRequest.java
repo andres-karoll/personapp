@@ -1,16 +1,14 @@
 package co.edu.javeriana.as.personapp.api.model.request;
 
-import java.time.LocalDate;
-
-public class EstudioRequest {
+public class EstudioApiRequest {
     private Integer idProfesion;
     private Integer ccPersona;
     private String fecha;
     private String universidad;
 
-    public EstudioRequest() {
+    public EstudioApiRequest() {
     }
-    public EstudioRequest(Integer idProfesion, Integer ccPersona, String fecha, String universidad, String profesion) {
+    public EstudioApiRequest(Integer idProfesion, Integer ccPersona, String fecha, String universidad, String profesion) {
         this.idProfesion = idProfesion;
         this.ccPersona = ccPersona;
         this.fecha = fecha;

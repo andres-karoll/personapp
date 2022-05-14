@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Response {
+public class ApiResponse {
 	
 	private String status;
 	private String description;
@@ -12,7 +12,7 @@ public class Response {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime date;
 
-	public Response(String status, String description, LocalDateTime date) {
+	public ApiResponse(String status, String description, LocalDateTime date) {
 		super();
 		this.status = status;
 		this.description = description;

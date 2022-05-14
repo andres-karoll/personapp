@@ -1,14 +1,14 @@
 package co.edu.javeriana.as.personapp.api.model.request;
 
-public class TelefonoRequest {
+public class TelefonoApiRequest {
     private String num;
     private String oper;
     private int ccDuenio;
 
-    public TelefonoRequest() {
+    public TelefonoApiRequest() {
     }
 
-    public TelefonoRequest(String num, String oper, int ccDuenio) {
+    public TelefonoApiRequest(String num, String oper, int ccDuenio) {
         this.num = num;
         this.oper = oper;
         this.ccDuenio = ccDuenio;

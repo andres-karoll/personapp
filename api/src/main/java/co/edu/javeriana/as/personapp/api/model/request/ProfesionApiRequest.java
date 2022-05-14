@@ -1,13 +1,13 @@
 package co.edu.javeriana.as.personapp.api.model.request;
 
-public class ProfesionRequest{
+public class ProfesionApiRequest {
     private Integer id;
     private String nom;
     private String des;
 
-    public ProfesionRequest(){}
+    public ProfesionApiRequest(){}
 
-    public ProfesionRequest(Integer id, String nom, String des) {
+    public ProfesionApiRequest(Integer id, String nom, String des) {
         this.id = id;
         this.nom = nom;
         this.des = des;
