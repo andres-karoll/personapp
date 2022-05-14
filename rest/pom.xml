@@ -8,4 +8,22 @@
   <artifactId>rest</artifactId>
   <name>rest</name>
   <description>Adaptador de salida tipo rest client de la aplicacion personapp</description>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.3.19</version>
+    </dependency>
+    <dependency>
+      <groupId>co.edu.javeriana.as.personapp</groupId>
+      <artifactId>core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20220320</version>
+    </dependency>
+
+  </dependencies>
 </project>
