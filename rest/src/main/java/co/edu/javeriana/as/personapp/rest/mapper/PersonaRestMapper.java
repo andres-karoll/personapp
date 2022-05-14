@@ -7,10 +7,11 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 @Component
-public class PersonaMapper {
+public class PersonaRestMapper {
+    EstudioRestMapper estudioRestMapper;
+
     public List<Persona> deJSONArrayAListPersona(JSONArray jsonPersona){
         List<Persona> personas = new ArrayList<>();
         if(jsonPersona != null){
@@ -24,6 +25,7 @@ public class PersonaMapper {
     public Persona deJSONObjectAPersona(JSONObject jsonPersona){
         if(jsonPersona != null) {
             Persona person = new Persona(jsonPersona.getInt("cc"), jsonPersona.getString("nombre"), jsonPersona.getString("apellido"), jsonPersona.getEnum(Genero.class, "genero"), jsonPersona.getInt("edad"));
+            person.setEstudios(estudioRestMapper.deJSONArrayAListEstudio(jsonPersona.getJSONArray("estudios")));
             return person;
         }
         return null;
@@ -37,8 +39,8 @@ public class PersonaMapper {
         objeto.put("apellido", persona.getApellido());
         objeto.put("genero", persona.getGenero());
         objeto.put("edad", persona.getEdad());
-        //objeto.put("telefonos", persona.getTelefonos());
-        //objeto.put("estudios", persona.getEstudios());
+        objeto.put("telefonos", persona.getTelefonos());
+        objeto.put("estudios", persona.getEstudios());
 
         return objeto;
     }

@@ -8,13 +8,13 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
-public class EstudioClient {
+public class EstudioRestClient {
 
-    private static final String CREATE_ESTUDIO = "http://localhost:3000/personas/createEstudios";
-    private static final String DELETE_ESTUDIO = "http://localhost:3000/personas/deleteEstudios/{id}/{cc}";
-    private static final String ALL_ESTUDIOS = "http://localhost:3000/personas/all";
-    private static final String FIND_ESTUDIOS_BY_ID_CC = "http://localhost:3000/personas/find/{id}/{cc}";
-    private static final String COUNT_ESTUDIOS = "http://localhost:3000/personas/count";
+    private static final String CREATE_ESTUDIO = "http://localhost:3000/estudios/createEstudios";
+    private static final String DELETE_ESTUDIO = "http://localhost:3000/estudios/deleteEstudios/{id}/{cc}";
+    private static final String ALL_ESTUDIOS = "http://localhost:3000/estudios/all";
+    private static final String FIND_ESTUDIOS_BY_ID_CC = "http://localhost:3000/estudios/find/{id}/{cc}";
+    private static final String COUNT_ESTUDIOS = "http://localhost:3000/estudios/count";
 
     //Get all estudios en la base de datos
     public JSONArray getEstudios() {

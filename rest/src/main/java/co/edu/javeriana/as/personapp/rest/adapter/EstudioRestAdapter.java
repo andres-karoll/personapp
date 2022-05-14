@@ -2,8 +2,8 @@ package co.edu.javeriana.as.personapp.rest.adapter;
 
 import co.edu.javeriana.as.personapp.core.domain.Estudio;
 import co.edu.javeriana.as.personapp.core.port.out.EstudioPort;
-import co.edu.javeriana.as.personapp.rest.client.EstudioClient;
-import co.edu.javeriana.as.personapp.rest.mapper.EstudioMapper;
+import co.edu.javeriana.as.personapp.rest.client.EstudioRestClient;
+import co.edu.javeriana.as.personapp.rest.mapper.EstudioRestMapper;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,36 +11,36 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class EstudioAdapter implements EstudioPort {
+public class EstudioRestAdapter implements EstudioPort {
     @Autowired
-    private EstudioMapper estudioMapper;
+    private EstudioRestMapper estudioRestMapper;
     @Autowired
-    private EstudioClient estudioClient;
+    private EstudioRestClient estudioRestClient;
 
 
     @Override
     public Estudio save(Estudio estudio) {
-        JSONObject estud = estudioMapper.deEstudioAJSONObject(estudio);
-        return estudioMapper.deJSONObjectAEstudio(estud);
+        JSONObject estud = estudioRestMapper.deEstudioAJSONObject(estudio);
+        return estudioRestMapper.deJSONObjectAEstudio(estud);
     }
 
     @Override
     public Boolean delete(Integer idProfesion, Integer ccPersona) {
-        return estudioClient.delete(idProfesion, ccPersona);
+        return estudioRestClient.delete(idProfesion, ccPersona);
     }
 
     @Override
     public List<Estudio> findAll() {
-        return estudioMapper.deJSONArrayAListEstudio(estudioClient.getEstudios());
+        return estudioRestMapper.deJSONArrayAListEstudio(estudioRestClient.getEstudios());
     }
 
     @Override
     public Estudio findByIdProfCcPer(Integer idProfesion, Integer ccPersona) {
-        return estudioMapper.deJSONObjectAEstudio(estudioClient.byID(idProfesion, ccPersona));
+        return estudioRestMapper.deJSONObjectAEstudio(estudioRestClient.byID(idProfesion, ccPersona));
     }
 
     @Override
     public Integer count() {
-        return estudioClient.count();
+        return estudioRestClient.count();
     }
 }

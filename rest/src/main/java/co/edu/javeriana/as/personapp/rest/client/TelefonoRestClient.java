@@ -1,4 +1,4 @@
 package co.edu.javeriana.as.personapp.rest.client;
 
-public class ProfesionClient {
+public class TelefonoRestClient {
 }

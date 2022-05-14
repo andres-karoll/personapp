@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
-public class PersonaClient {
+public class PersonaRestClient {
 
     private static final String GET_ALL_PERSONAS = "http://localhost:3000/personas/all";
     private static final String CREATE_PERSONA = "http://localhost:3000/personas/createPersonas";
