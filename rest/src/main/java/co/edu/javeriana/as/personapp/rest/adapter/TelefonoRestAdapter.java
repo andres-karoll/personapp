@@ -30,7 +30,7 @@ public class TelefonoRestAdapter implements TelefonoPort {
 
     @Override
     public List<Telefono> findAll() {
-        return telefonoRestMapper.deJSONArrayAListPersona(telefonoRestClient.get());
+        return telefonoRestMapper.deJSONArrayAListTelefono(telefonoRestClient.get());
     }
 
     @Override

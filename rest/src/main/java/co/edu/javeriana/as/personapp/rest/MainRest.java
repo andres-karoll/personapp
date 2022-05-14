@@ -17,10 +17,10 @@ public class MainRest {
         JSONObject ob = personaclient.create(obj);
         Persona per = personaRestMapper.deJSONObjectAPersona(ob);
         System.out.println(per);
-        //System.out.println("Get all");
-        //System.out.println(personaMapper.deJSONArrayAListPersona(personaclient.get()));
-        //System.out.println("Get id");
-        //System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(123)));
+        System.out.println("Get all");
+        System.out.println(personaRestMapper.deJSONArrayAListPersona(personaclient.get()));
+        System.out.println("Get id");
+        System.out.println(personaRestMapper.deJSONObjectAPersona(personaclient.byID(12333)));
         //System.out.println(personaMapper.deJSONObjectAPersona(personaclient.byID(1)));
         //System.out.println(LocalDate.now());
         //System.out.println(personaclient.count());
