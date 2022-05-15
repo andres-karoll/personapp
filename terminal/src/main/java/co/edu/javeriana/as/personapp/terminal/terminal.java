@@ -9,6 +9,8 @@ import co.edu.javeriana.as.personapp.core.service.PersonaService;
 import co.edu.javeriana.as.personapp.core.service.EstudioService;
 import co.edu.javeriana.as.personapp.core.service.ProfesionService;
 import co.edu.javeriana.as.personapp.core.service.TelefonoService;
+
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 import java.io.IOException;
@@ -42,6 +44,8 @@ public class terminal {
         Estudio estudio;
         Profesion profesion;
         Telefono telefono;
+        ArrayList<Telefono> telefonos;
+        ArrayList<Estudio> estudios;
 
         do {
             System.out.println("Seleccione el modulo que desea utilizar: ");
@@ -75,6 +79,10 @@ public class terminal {
                             System.out.println("------------------------------------------------------");
                             System.out.println("\tCrear una persona");
                             persona = new Persona();
+                            telefono = new Telefono();
+                            telefonos = new ArrayList<>();
+                            estudios = new ArrayList<>();
+                            estudio = new Estudio();
                             System.out.println("Ingrese el nombre de la persona: ");
                             persona.setNombre(sc.nextLine());
                             System.out.println("Ingrese el apellido de la persona: ");
@@ -85,7 +93,23 @@ public class terminal {
                             persona.setGenero(Genero.valueOf(sc.next()));
                             System.out.println("Ingrese la edad de la persona: ");
                             persona.setEdad(sc.nextInt());
-                            // TODO Make the request or call whoever i have to call
+                            System.out.println("Ingrese el telefono de la persona: ");
+                            telefono.setNum(sc.nextLine());
+                            System.out.println("Ingrese el operador de telefono de la persona: ");
+                            telefono.setOper(sc.nextLine());
+                            telefono.setDuenio(persona);
+                            telefonos.add(telefono);
+                            persona.setTelefonos(telefonos);
+                            System.out.println("Ingrese el id de la profesion de la persona: ");
+                            estudio.setIdProfesion(sc.nextInt());
+                            estudio.setCcPersona(persona.getCc());
+                            System.out.println("Ingrese la universidad en la que estudio: ");
+                            estudio.setUniversidad(sc.nextLine());
+                            estudios.add(estudio);
+                            persona.setEstudios(estudios);
+
+                            System.out.println(personaService.crear(persona));
+
                             pause();
                             cls();
                             break;
@@ -123,6 +147,36 @@ public class terminal {
                         case "5":
                             System.out.println("------------------------------------------------------");
                             System.out.println("\tEditar una persona");
+                            System.out.println("Ingrese la cc de la persona: ");
+                            cc = (sc.nextInt());
+                            persona = personaService.buscarPorId(cc);
+                            telefono = new Telefono();
+                            estudio = new Estudio();
+                            System.out.println("Ingrese el nombre de la persona: ");
+                            persona.setNombre(sc.nextLine());
+                            System.out.println("Ingrese el apellido de la persona: ");
+                            persona.setApellido(sc.nextLine());
+                            System.out.println("Ingrese la cc de la persona: ");
+                            persona.setCc(sc.nextInt());
+                            System.out.println("Ingrese el genero de la persona: ");
+                            persona.setGenero(Genero.valueOf(sc.next()));
+                            System.out.println("Ingrese la edad de la persona: ");
+                            persona.setEdad(sc.nextInt());
+                            System.out.println("Ingrese el telefono de la persona: ");
+                            telefono.setNum(sc.nextLine());
+                            System.out.println("Ingrese el operador de telefono de la persona: ");
+                            telefono.setOper(sc.nextLine());
+                            telefono.setDuenio(persona);
+                            persona.getTelefonos().add(telefono);
+                            System.out.println("Ingrese el id de la profesion de la persona: ");
+                            estudio.setIdProfesion(sc.nextInt());
+                            estudio.setCcPersona(persona.getCc());
+                            System.out.println("Ingrese la universidad en la que estudio: ");
+                            estudio.setUniversidad(sc.nextLine());
+                            persona.getEstudios().add(estudio);
+
+                            System.out.println(personaService.editar(cc, persona));
+                            pause();
                             cls();
                             break;
                         // Salir
