@@ -35,7 +35,7 @@ public class terminal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String opcion;
-        int cc, id;
+        int cc, id, numero;
         PersonaService personaService = new PersonaService();
         EstudioService estudioService = new EstudioService();
         ProfesionService profesionService = new ProfesionService();
@@ -347,6 +347,42 @@ public class terminal {
                     break;
                 // Modulo de telefono
                 case "4":
+                    System.out.println("------------------------------------------------------");
+                    System.out.println("Modulo de telefono");
+                    System.out.println("1. Buscar un telefono");
+                    System.out.println("2. Listar telefonos");
+                    System.out.println("0. Salir");
+                    System.out.println("3. ------------------------------------------------------");
+                    System.out.print("Ingrese una opcion: ");
+                    opcion = sc.nextLine();
+                    cls();
+                    // Seleccionar la opcion del modulo
+                    switch (opcion) {
+                        // Buscar un telefono
+                        case "1": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tBuscar un telefono");
+                            System.out.println("Ingrese el numero de telefono: ");
+                            numero = sc.nextInt();
+                            System.out.println(telefonoService.buscarPorId(numero).toString());
+                            pause();
+                            cls();
+                            break;
+                        // Listar telefonos
+                        case "2": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tListar telefonos");
+                            System.out.println("Total de telefonos: " + telefonoService.contar());
+                            System.out.println("Listado de telefonos: ");
+                            System.out.println(telefonoService.buscarTodo().toString());
+                            pause();
+                            cls();
+                            break;
+                        // Salir
+                        case "0":
+                            System.out.println("Saliendo...");
+                            break;
+                    }
                     break;
                 // Salir
                 case "0":
@@ -354,7 +390,5 @@ public class terminal {
                     break;
             }
         } while (!Objects.equals(opcion, "0"));
-
-
     }
 }
