@@ -8,4 +8,12 @@
   <artifactId>terminal</artifactId>
   <name>terminal</name>
   <description>Adaptador de entrada por terminal de la aplicacion personapp</description>
+  <dependencies>
+    <dependency>
+      <groupId>co.edu.javeriana.as.personapp</groupId>
+      <artifactId>core</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
 </project>
