@@ -5,7 +5,10 @@ import co.edu.javeriana.as.personapp.core.domain.Genero;
 import co.edu.javeriana.as.personapp.core.domain.Estudio;
 import co.edu.javeriana.as.personapp.core.domain.Profesion;
 import co.edu.javeriana.as.personapp.core.domain.Telefono;
-
+import co.edu.javeriana.as.personapp.core.service.PersonaService;
+import co.edu.javeriana.as.personapp.core.service.EstudioService;
+import co.edu.javeriana.as.personapp.core.service.ProfesionService;
+import co.edu.javeriana.as.personapp.core.service.TelefonoService;
 import java.util.Objects;
 import java.util.Scanner;
 import java.io.IOException;
@@ -19,17 +22,34 @@ public class terminal {
         }
     }
 
+    // Simulación de un pause
+    public static void pause() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Presione enter para continuar...");
+        sc.nextLine();
+    }
+
     // Menu principal
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String opcion;
+        int cc, id;
+        PersonaService personaService = new PersonaService();
+        EstudioService estudioService = new EstudioService();
+        ProfesionService profesionService = new ProfesionService();
+        TelefonoService telefonoService = new TelefonoService();
+        Persona persona;
+        Estudio estudio;
+        Profesion profesion;
+        Telefono telefono;
+
         do {
             System.out.println("Seleccione el modulo que desea utilizar: ");
             System.out.println("1. Modulo de Personas");
             System.out.println("2. Modulo de estudios");
             System.out.println("3. Modulo de profesión");
             System.out.println("4. Modulo de telefono");
-            System.out.println("5. Salir");
+            System.out.println("0. Salir");
             System.out.print("Ingrese una opcion: ");
             opcion = sc.nextLine();
             cls();
@@ -37,12 +57,14 @@ public class terminal {
             switch (opcion) {
                 // Modulo de personas
                 case "1":
+                    System.out.println("------------------------------------------------------");
                     System.out.println("Modulo de Personas");
                     System.out.println("1. Crear una persona");
                     System.out.println("2. Buscar una persona");
                     System.out.println("3. Listar personas");
                     System.out.println("4. Eliminar una persona");
-                    System.out.println("5. Salir");
+                    System.out.println("5. Editar una persona");
+                    System.out.println("0. Salir");
                     System.out.print("Ingrese una opcion: ");
                     opcion = sc.nextLine();
                     cls();
@@ -51,68 +73,161 @@ public class terminal {
                         // Crear una persona
                         case "1":
                             System.out.println("------------------------------------------------------");
-                            System.out.println("Crear una persona");
-                            Persona persona = new Persona();
-
+                            System.out.println("\tCrear una persona");
+                            persona = new Persona();
                             System.out.println("Ingrese el nombre de la persona: ");
-                            String nombre = sc.nextLine();
+                            persona.setNombre(sc.nextLine());
                             System.out.println("Ingrese el apellido de la persona: ");
-                            String apellido = sc.nextLine();
+                            persona.setApellido(sc.nextLine());
                             System.out.println("Ingrese la cc de la persona: ");
-                            int cc = sc.nextInt();
+                            persona.setCc(sc.nextInt());
                             System.out.println("Ingrese el genero de la persona: ");
-                            String genero = sc.nextLine();
+                            persona.setGenero(Genero.valueOf(sc.next()));
                             System.out.println("Ingrese la edad de la persona: ");
-                            int edad = sc.nextInt();
+                            persona.setEdad(sc.nextInt());
                             // TODO Make the request or call whoever i have to call
+                            pause();
                             cls();
                             break;
                         // Buscar una persona
-                        case "2":
-                            System.out.println("Buscar una persona");
-                            System.out.println("Ingrese el nombre de la persona: ");
-                            System.out.println("Ingrese el apellido de la persona: ");
+                        case "2": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tBuscar una persona");
                             System.out.println("Ingrese la cc de la persona: ");
-                            System.out.println("Ingrese el genero de la persona: ");
-                            System.out.println("Ingrese la edad de la persona: ");
+                            cc = sc.nextInt();
+                            System.out.println(personaService.buscarPorId(cc).toString());
+                            pause();
                             cls();
                             break;
                         // Listar personas
-                        case "3":
-                            System.out.println("Listar personas");
-                            System.out.println("Ingrese el nombre de la persona: ");
-                            System.out.println("Ingrese el apellido de la persona: ");
-                            System.out.println("Ingrese la cc de la persona: ");
-                            System.out.println("Ingrese el genero de la persona: ");
-                            System.out.println("Ingrese la edad de la persona: ");
+                        case "3": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tListar personas");
+                            System.out.println("Total de personas: " + personaService.contar());
+                            System.out.println("Listado de personas: ");
+                            System.out.println(personaService.buscarTodo().toString());
+                            pause();
                             cls();
                             break;
                         // Eliminar una persona
-                        case "4":
-                            System.out.println("Eliminar una persona");
-                            System.out.println("Ingrese el nombre de la persona: ");
-                            System.out.println("Ingrese el apellido de la persona: ");
+                        case "4": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tEliminar una persona");
                             System.out.println("Ingrese la cc de la persona: ");
-                            System.out.println("Ingrese el genero de la persona: ");
-                            System.out.println("Ingrese la edad de la persona: ");
+                            cc = sc.nextInt();
+                            System.out.println(personaService.eliminar(cc));
+                            pause();
                             cls();
+                            break;
+                        // Editar una persona
+                        case "5":
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tEditar una persona");
+                            cls();
+                            break;
+                        // Salir
+                        case "0":
+                            System.out.println("Saliendo...");
                             break;
                     }
                     break;
                 // Modulo de estudios
                 case "2":
-                    pass();
                     break;
                 // Modulo de profesion
                 case "3":
-                    pass();
+                    System.out.println("------------------------------------------------------");
+                    System.out.println("Modulo de profesion");
+                    System.out.println("1. Crear una profesion");
+                    System.out.println("2. Buscar una profesion");
+                    System.out.println("3. Listar profesiones");
+                    System.out.println("4. Eliminar una profesion");
+                    System.out.println("5. Editar una profesion");
+                    System.out.println("0. Salir");
+                    System.out.print("Ingrese una opcion: ");
+                    opcion = sc.nextLine();
+                    cls();
+                    // Seleccionar la opcion del modulo
+                    switch (opcion) {
+                        // Crear una profesion
+                        case "1": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tCrear una profesion");
+                            profesion = new Profesion();
+                            System.out.println("Ingrese el nombre de la profesion: ");
+                            profesion.setNom(sc.nextLine());
+                            System.out.println("Ingrese el id de la profesion: ");
+                            profesion.setId(sc.nextInt());
+                            System.out.println("Ingrese la descripción de la profesion: ");
+                            profesion.setDes(sc.nextLine());
+                            System.out.println(profesionService.crear(profesion));
+                            pause();
+                            cls();
+                            break;
+                        // Buscar una profesion
+                        case "2": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tBuscar una profesion");
+                            System.out.println("Ingrese el id de la profesion: ");
+                            id = sc.nextInt();
+                            System.out.println(profesionService.buscarPorId(id).toString());
+                            pause();
+                            cls();
+                            break;
+                        // Listar profesiones
+                        case "3": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tListar profesiones");
+                            System.out.println("Total de profesiones: " + profesionService.contar());
+                            System.out.println("Listado de profesiones: ");
+                            System.out.println(profesionService.buscarTodo().toString());
+                            pause();
+                            cls();
+                            break;
+                        // Eliminar una profesion
+                        case "4": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tEliminar una profesion");
+                            System.out.println("Ingrese el id de la profesion: ");
+                            id = sc.nextInt();
+                            System.out.println(profesionService.eliminar(id));
+                            System.out.println(profesionService.eliminar(id));
+                            pause();
+                            cls();
+                            break;
+                        // Editar una profesion
+                        case "5": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tEditar una profesion");
+                            System.out.println("Ingrese el id de la profesion que desea editar: ");
+                            id = sc.nextInt();
+                            profesion = new Profesion();
+                            System.out.println("---Editando profesion---");
+                            System.out.println("Ingrese el nombre de la profesion: ");
+                            profesion.setNom(sc.nextLine());
+                            System.out.println("Ingrese el id de la profesion: ");
+                            profesion.setId(sc.nextInt());
+                            System.out.println("Ingrese la descripción de la profesion: ");
+                            profesion.setDes(sc.nextLine());
+                            System.out.println(profesionService.editar(id, profesion));
+                            pause();
+                            cls();
+                            break;
+                        // Salir
+                        case "0":
+                            System.out.println("Saliendo...");
+                            break;
+                    }
                     break;
                 // Modulo de telefono
                 case "4":
-                    pass();
+                    break;
+                // Salir
+                case "0":
+                    System.out.println("Saliendo...");
                     break;
             }
-        } while (!Objects.equals(opcion, "5"));
+        } while (!Objects.equals(opcion, "0"));
 
 
     }
