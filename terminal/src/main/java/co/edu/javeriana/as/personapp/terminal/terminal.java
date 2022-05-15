@@ -107,6 +107,8 @@ public class terminal {
                             estudio.setUniversidad(sc.nextLine());
                             estudios.add(estudio);
                             persona.setEstudios(estudios);
+                            estudioService.crear(estudio);
+                            telefonoService.crear(telefono);
 
                             System.out.println(personaService.crear(persona));
 
@@ -175,6 +177,9 @@ public class terminal {
                             estudio.setUniversidad(sc.nextLine());
                             persona.getEstudios().add(estudio);
 
+                            estudioService.crear(estudio);
+                            telefonoService.crear(telefono);
+
                             System.out.println(personaService.editar(cc, persona));
                             pause();
                             cls();
@@ -187,6 +192,73 @@ public class terminal {
                     break;
                 // Modulo de estudios
                 case "2":
+                    System.out.println("------------------------------------------------------");
+                    System.out.println("\tModulo de estudios");
+                    System.out.println("1. Buscar un estudio");
+                    System.out.println("2. Listar estudios");
+                    System.out.println("3. Eliminar un estudio");
+                    System.out.println("4. Editar un estudio");
+                    System.out.println("0. Salir");
+                    System.out.println("------------------------------------------------------");
+                    System.out.print("Ingrese una opcion: ");
+                    opcion = sc.nextLine();
+                    switch (opcion) {
+                        // Buscar un estudio
+                        case "1": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tBuscar un estudio");
+                            System.out.println("Ingrese el id de la profesion: ");
+                            id = sc.nextInt();
+                            System.out.println("Ingrese la cc de la persona: ");
+                            cc = sc.nextInt();
+                            System.out.println(estudioService.buscarPorId(cc, id).toString());
+                            pause();
+                            cls();
+                            break;
+                        // Listar estudios
+                        case "2": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tListar estudios");
+                            System.out.println("Total de estudios: " + estudioService.contar());
+                            System.out.println("Listado de estudios: ");
+                            System.out.println(estudioService.buscarTodo().toString());
+                            pause();
+                            cls();
+                            break;
+                        // Eliminar un estudio
+                        case "3": // DONE
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tEliminar un estudio");
+                            System.out.println("Ingrese el id de la profesion: ");
+                            id = sc.nextInt();
+                            System.out.println("Ingrese la cc de la persona: ");
+                            cc = sc.nextInt();
+
+                            System.out.println(estudioService.eliminar(cc, id));
+
+                            pause();
+                            cls();
+                            break;
+                        // Editar un estudio
+                        case "4":
+                            estudio = new Estudio();
+                            System.out.println("------------------------------------------------------");
+                            System.out.println("\tEditar un estudio");
+                            System.out.println("Ingrese el id de la profesion: ");
+                            id = sc.nextInt();
+                            System.out.println("Ingrese la cc de la persona: ");
+                            cc = sc.nextInt();
+
+
+                            System.out.println(estudioService.editar(id, cc, estudio));
+                            pause();
+                            cls();
+                            break;
+                        // Salir
+                        case "0":
+                            System.out.println("Saliendo...");
+                            break;
+                    }
                     break;
                 // Modulo de profesion
                 case "3":
